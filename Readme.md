@@ -24,7 +24,7 @@ View the screen of the instructor's machine
 
 View previous class recordings
 
-* TBD
+* <https://www.youtube.com/playlist?list=PLHcEzCb_lW6ekg1WVacKE6aqBn64Yc_2C>
 
 ## Registration Form
 
