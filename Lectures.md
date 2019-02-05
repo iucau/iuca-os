@@ -1,6 +1,7 @@
 # Lectures
 
 1. [Introduction](https://drive.google.com/open?id=0B85z_dQxOMgLU0EzbmRTbk8tUG8)
+2. [History](https://drive.google.com/open?id=0B85z_dQxOMgLdDA0aEVIT1JHSnM)
 
 ### Videos
 
