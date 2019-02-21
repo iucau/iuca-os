@@ -124,7 +124,7 @@ prefix.
 
         sudo apt-get install gcc make gdb git
 
-4. Shutdown the system.
+3. Shutdown the system.
 
 ### Fixing Networking Issues
 
