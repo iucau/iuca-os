@@ -155,6 +155,11 @@ To exit from a virtual terminal
 31. Update package index and install updates to the system
 
         sudo apt update && sudo apt upgrade
+    
+    If you expirience troubles updating the Ubuntu installation, try running
+    the following command.
+    
+        sudo sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
 
 32. Install `git`, `make`, `gcc`, and `ncurses-dev`.
 
