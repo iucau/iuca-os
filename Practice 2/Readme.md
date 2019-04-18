@@ -186,35 +186,26 @@ To exit from a virtual terminal
 
         cd ~/
 
-38. Set your name and e-mail address in Git.
-
-        git config --global user.name "your full name"
-        git config --global user.email "your e-mail address"
-
-39. Clone the Linux kernel repository for Ubuntu 16.10. Note that Git will try
+38. Clone the Linux kernel repository for Ubuntu 16.10. Note that Git will try
     to fetch around 200 megabytes of data from the Canonical servers (the company
     behind the Ubuntu OS).
 
         git clone --depth 1 git://kernel.ubuntu.com/ubuntu/ubuntu-yakkety.git
 
-40. Install prerequisites for building the kernel.
+39. Install prerequisites for building the kernel.
 
         sudo apt build-dep linux-image-$(uname -r)
         sudo apt install fakeroot
 
-41. Go inside the kernel source tree.
+40. Go inside the kernel source tree.
 
         cd ubuntu-*
 
-42. Create and switch to a new branch to contain all your changes.
-
-        git checkout -b task_info
-
-43. Copy system call entry points into the kernel source tree.
+41. Copy system call entry points into the kernel source tree.
 
         cp -R ~/Practice\ 2/ubuntu-*/task_info ~/ubuntu-*/
 
-44. Study implementation of two system calls in `task_info/get_pids.c` and
+42. Study implementation of two system calls in `task_info/get_pids.c` and
     `task_info/get_task_info.c`. Take a look at the structure passed between
     the kernel and user space in `task_info/include/task_info.h`.
 
@@ -227,7 +218,7 @@ To exit from a virtual terminal
     for all running tasks. The second returns task information for a specified
     process ID.
 
-45. Take a look at the structure used to represent threads and processes in the
+43. Take a look at the structure used to represent threads and processes in the
     Linux kernel. You can find it near the line 1377 at `include/linux/sched.h`
     under the name `task_struct`.
 
@@ -235,11 +226,11 @@ To exit from a virtual terminal
 
     Check fields the `struct task_struct` contains.
 
-46. Study build rules for the new system calls in `task_info/Makefile`.
+44. Study build rules for the new system calls in `task_info/Makefile`.
 
         nano ~/ubuntu-*/task_info/Makefile
 
-47. Add a kernel configuration entry to disable or enable the new subsystem.
+45. Add a kernel configuration entry to disable or enable the new subsystem.
 
         nano ~/ubuntu-*/init/Kconfig
 
@@ -254,7 +245,7 @@ To exit from a virtual terminal
 
     at the end of the file. Adjust tabs and spaces.
 
-48. Add a forward declaration for the `task_info` structure and two function
+46. Add a forward declaration for the `task_info` structure and two function
     prototypes for `get_pids` and `get_task_info` at the end of
     `include/linux/syscalls.h`.
 
@@ -276,7 +267,7 @@ To exit from a virtual terminal
 
     at the end of the file before the closing `#endif`
 
-49. Add generic table entries for two system calls before the first instance of
+47. Add generic table entries for two system calls before the first instance of
     `#undef __NR_syscalls` in `include/uapi/asm-generic/unistd.h`. Do not forget
     to increment the counter for the first `#define __NR_syscalls` by two.
 
@@ -308,7 +299,7 @@ To exit from a virtual terminal
 
         #define __NR_syscalls 290
 
-50. Add x86 table entries for two system calls at the end of the
+48. Add x86 table entries for two system calls at the end of the
     `arch/x86/entry/syscalls/syscall_32.tbl` file.
 
         nano ~/ubuntu-*/arch/x86/entry/syscalls/syscall_32.tbl
@@ -323,7 +314,7 @@ To exit from a virtual terminal
     Don't forget to adjust numbers `380` and `381` if necessary. Use successive
     values after the last system call in the file.
 
-51. Add x86-64 table entries for two system calls in
+49. Add x86-64 table entries for two system calls in
     `arch/x86/entry/syscalls/syscall_64.tbl`. Do it before the
     `# x32-specific system call num...` comment.
 
@@ -345,7 +336,7 @@ To exit from a virtual terminal
     values after the last system call in the file. Adjust tabs and spaces
     appropriately.
 
-52. Add two fallback stubs at the end of `kernel/sys_ni.c`.
+50. Add two fallback stubs at the end of `kernel/sys_ni.c`.
 
         nano ~/ubuntu-*/kernel/sys_ni.c
 
@@ -357,7 +348,7 @@ To exit from a virtual terminal
 
     at the end of the file
 
-53. Modify the kernel build system to compile the new calls. Add the
+51. Modify the kernel build system to compile the new calls. Add the
     directory `task_info/` at the end of the line
     `core-y += kernel/ mm/ fs/ ipc/ security/ crypto/ block/` in the main
     `Makefile`.
@@ -372,7 +363,7 @@ To exit from a virtual terminal
 
         core-y += kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ task_info/
 
-54. Add a string `+test` after the version number at the top of
+52. Add a string `+test` after the version number at the top of
     `debian.master/changelog` to identify your new kernel.
 
         nano ~/ubuntu-*/debian.master/changelog
@@ -385,27 +376,27 @@ To exit from a virtual terminal
 
         linux (4.8.0-27.29+test) yakkety; urgency=low
 
-55. Ensure that you are in the root directory of the kernel source tree.
+53. Ensure that you are in the root directory of the kernel source tree.
 
         cd ~/ubuntu-*
 
-56. Make Debian build scripts executable.
+54. Make Debian build scripts executable.
 
         chmod a+x debian/scripts/*
         chmod a+x debian/scripts/misc/*
 
-57. Clean the build directory.
+55. Clean the build directory.
 
         fakeroot debian/rules clean
 
-58. Create default configuration files for the kernel.
+56. Create default configuration files for the kernel.
 
         fakeroot debian/rules editconfigs
 
     For each prompt, ensure that the `task_info` option is selected, save the
     configuration and exit.
 
-59. Start the kernel build process. A successful build will produce multiple
+57. Start the kernel build process. A successful build will produce multiple
     `.deb` packages in the parent directory. Time the the process.
 
         time fakeroot debian/rules binary-perarch \
@@ -442,15 +433,15 @@ To exit from a virtual terminal
                                    binary-headers \
                                    binary-generic
 
-60. Go to the parent directory.
+58. Go to the parent directory.
 
         cd ..
 
-61. Ensure that you have a number of newly created `.deb` packages.
+59. Ensure that you have a number of newly created `.deb` packages.
 
         ls *.deb
 
-62. Install the new kernel and all its supporting files.
+60. Install the new kernel and all its supporting files.
 
         sudo dpkg -i *.deb
 
@@ -462,29 +453,29 @@ To exit from a virtual terminal
 
         sudo dpkg -i *.deb
 
-63. Reboot the machine to start using the new kernel.
+61. Reboot the machine to start using the new kernel.
 
         sudo shutdown -r now
 
-64. Reconnect to your machine.
+62. Reconnect to your machine.
 
         ssh -p 2222 <the user name specified during installation>@127.0.0.1
 
-65. Go to the directory with sources of the process information utility "tasks".
+63. Go to the directory with sources of the process information utility "tasks".
 
         cd '~/Practice 2/tasks'
 
-66. Adjust system call numbers that you have defined in the kernel. Change
+64. Adjust system call numbers that you have defined in the kernel. Change
     values for constants `__NR_get_pids` and `__NR_get_task_info` in `tasks.c`.
 
         nano tasks.c
 
-67. Recompile the user space program.
+65. Recompile the user space program.
 
         make clean
         make
 
-68. Test the new system calls.
+66. Test the new system calls.
 
         ./tasks
 
@@ -495,44 +486,24 @@ To exit from a virtual terminal
     the arrow keys, show or hide kernel threads with the `t` key, or exit by
     pressing `q`.
 
-69. Study the sources of the user space program.
+67. Study the sources of the user space program.
 
-70. Go back to the kernel source tree.
+68. Go back to the kernel source tree.
 
         cd ~/ubuntu-*
 
-71. Create a file listing of the home directory.
+69. Create a file listing of the home directory.
 
         ls ../ > <last name>-<first letter of the first name>-home.txt
 
-72. Create a new repository with all the modified files. Don't forget
-    to put a proper name for the `<last name>-<first letter of the first name>-time.txt`
-    and `<last name>-<first letter of the first name>-home.txt` files.
-
-        rm -rf .git
-        git init
-        git add task_info/                             \
-                init/Kconfig                           \
-                include/linux/syscalls.h               \
-                include/uapi/asm-generic/unistd.h      \
-                arch/x86/entry/syscalls/syscall_32.tbl \
-                arch/x86/entry/syscalls/syscall_64.tbl \
-                kernel/sys_ni.c                        \
-                Makefile                               \
-                debian.master/changelog
-        git add <last name>-<first letter of the first name>-time.txt
-        git add <last name>-<first letter of the first name>-home.txt
-
-        git commit -m "Add a 'task_info' subsystem"
-
 ### Submitting Work
 
-You will get a git remote link to push your modified Linux sources.
-Push the changes before the deadline.
+You have to ensure the safety of your virtual machine image until the final
+exam to present your work to the instructor.
 
 ### Deadlines
 
-You will have two weeks from the announcement date to finish your work.
+You have time until the final exam.
 
 ### Resources
 
