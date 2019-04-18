@@ -172,7 +172,7 @@ To exit from a virtual terminal
 34. Go to the directory with sources of the process information utility
     "tasks".
 
-        cd '~/Practice 2/tasks'
+        cd ~/Practice\ 2/tasks
 
 35. Compile the user space program.
 
@@ -463,7 +463,7 @@ To exit from a virtual terminal
 
 63. Go to the directory with sources of the process information utility "tasks".
 
-        cd '~/Practice 2/tasks'
+        cd ~/Practice\ 2/tasks
 
 64. Adjust system call numbers that you have defined in the kernel. Change
     values for constants `__NR_get_pids` and `__NR_get_task_info` in `tasks.c`.
