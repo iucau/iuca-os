@@ -159,7 +159,7 @@ To exit from a virtual terminal
     If you expirience troubles updating the Ubuntu installation, try running
     the following command.
     
-        sudo sed -i -e 's/us.archive.ubuntu.com\|us.security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+        sudo sed -i -e 's/us.archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
 
 32. Install `git`, `make`, `gcc`, and `ncurses-dev`.
 
