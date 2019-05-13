@@ -33,3 +33,7 @@ View previous class recordings
 ## Midterm Sign Up Form
 
 * <https://docs.google.com/spreadsheets/d/1f8A54dbVW76yXeMLGAa1BNQbxFBdBvedzJZbyuvDCLA/edit?usp=sharing>
+
+## Final Sign Up Form
+
+* <https://docs.google.com/spreadsheets/d/16wlM0BiPo3ViccGxvvzK7lROVMrK5FKuUYxlqI4wVYs/edit?usp=sharing>
